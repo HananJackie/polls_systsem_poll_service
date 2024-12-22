@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8.0
+    container_name: poll_mysql_container
+    environment:
+      - MYSQL_DATABASE=poll_db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=root_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password
+volumes:
+  mysql-data:
